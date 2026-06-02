@@ -800,7 +800,7 @@ def esegui_backup(state: State):
 page_data_entry = """
 <|part|class_name=dashboard-wrapper|
 <|layout|columns=1 1|
-<|Magazzino EUREKA s.r.l. |text|class_name=logo-text|>
+<|Magazzino xxx s.r.l. |text|class_name=logo-text|>
 <|{ora_attuale}|text|class_name=system-time|>
 |>
 
@@ -870,7 +870,7 @@ page_data_entry = """
 page_gestione = """
 <|part|class_name=dashboard-wrapper|
 <|layout|columns=1 1|
-<|Magazzino EUREKA s.r.l. |text|class_name=logo-text|>
+<|Magazzino xxx s.r.l. |text|class_name=logo-text|>
 
 <|{ora_attuale}|text|class_name=system-time|>
 |>
@@ -936,7 +936,7 @@ page_gestione = """
 page_dashboard = """
 <|part|class_name=dashboard-wrapper|
 <|layout|columns=1 1|
-<|Magazzino EUREKA s.r.l. |text|class_name=logo-text|>
+<|Magazzino xxx s.r.l. |text|class_name=logo-text|>
 <|{ora_attuale}|text|class_name=system-time|>
 |>
 
@@ -1045,7 +1045,7 @@ if __name__ == "__main__":
     
     # 5. Avvio con CSS integrato
     Gui(pages=all_pages).run(
-        title="Magazzino Eureka",
+        title="Magazzino xxx",
         use_restyle=True,
         port=5001,
         run_browser=True,
