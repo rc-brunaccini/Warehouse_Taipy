@@ -1,0 +1,250 @@
+/* ─────────────────────────────────────────────────────────────
+   DESIGN SYSTEM & VARIABILI (Sorgente Unica)
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --bg-primary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --accent-primary: #3b82f6;
+  --accent-success: #10b981;
+  --accent-danger: #ef4444;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 
+               0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* FORZA IL DARK MODE QUANDO TAIPY LO ATTIVA */
+.taipy-dark, [data-theme="dark"] {
+  --bg-primary: #0f172a !important;
+  --bg-card: #1e293b !important;
+  --bg-card-hover: #334155 !important;
+  --text-primary: #f8fafc !important;
+  --text-secondary: #94a3b8 !important;
+  --accent-primary: #60a5fa !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   DASHBOARD LAYOUT
+   ───────────────────────────────────────────────────────────── */
+.dashboard-wrapper {
+    padding: 40px !important; /* Molto più respiro */
+    max-width: 1400px; /* Non far spalmare tutto su schermi giganti */
+    margin: 0 auto !important;
+}
+/* ─────────────────────────────────────────────────────────────
+   KPI CARDS
+   ───────────────────────────────────────────────────────────── */
+.kpi-card {
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%) !important;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.05), var(--shadow-sm) !important;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent-primary), #60a5fa);
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.kpi-title {
+  letter-spacing: 0.1em; /* Più respiro per il maiuscolo */
+  opacity: 0.7;
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+}
+
+.kpi-val {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -1px;
+  text-shadow: 0 0 20px rgba(96, 165, 250, 0.3); /* Bagliore azzurro */
+  background: linear-gradient(180deg, #fff 0%, #94a3b8 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+}
+
+.kpi-alert .kpi-val {
+  text-shadow: 0 0 20px rgba(239, 68, 68, 0.4); /* Bagliore rosso per alert */
+  background: linear-gradient(180deg, #ff9494 0%, #ef4444 100%);
+  -webkit-background-clip: text !important;
+}
+
+/* Alert specifico per Sottoscorta */
+.kpi-card--alert::before { background: var(--accent-danger); }
+.kpi-alert { color: var(--accent-danger) !important; }
+
+.kpi-card, .card-panel {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05) !important; /* Molto trasparente */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Effetto luce che passa sulla card al passaggio del mouse */
+@keyframes pulse-dot {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-success);
+  animation: pulse-dot 2s infinite;
+}
+
+.kpi-card:hover::after {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PANELS & TABLES
+   ───────────────────────────────────────────────────────────── */
+.card-panel, .chart-panel {
+  background: var(--bg-card) !important;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.2) !important;
+  margin-bottom: 20px;
+}
+
+/* Fix per le tabelle Taipy in Dark Mode */
+.taipy-table {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+.taipy-table .MuiTableCell-head {
+  background-color: rgba(0,0,0,0.2) !important;
+  color: var(--accent-primary) !important;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.taipy-table .MuiTableRow-root:hover {
+  background-color: rgba(255,255,255,0.02) !important;
+}
+/* ─────────────────────────────────────────────────────────────
+   BUTTONS
+   ───────────────────────────────────────────────────────────── */
+.btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  border: none !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5) !important;
+  filter: brightness(1.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--text-secondary) !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+  transform: translateX(-100%);
+}
+
+.btn-primary:hover::after {
+  animation: shimmer 1.5s infinite;
+}
+/* Distanza tra le etichette e gli input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Crea spazio tra il grassetto e la casella */
+    margin-bottom: 5px;
+}
+
+/* Rendi il toggle più evidente */
+.toggle-type {
+    padding: 10px 0;
+}
+
+/* Se vuoi colorare il testo del toggle per non sbagliare mai */
+.taipy-toggle button.Mui-selected {
+    background: var(--accent-primary) !important;
+    font-weight: 700 !important;
+}
+
+/* Spaziatura extra per i componenti layout dentro le card */
+.card-panel br {
+    content: "";
+    margin: 10px 0;
+    display: block;
+}
+
+.logo-text {
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--accent-primary);
+}
+.system-time {
+    text-align: right;
+    opacity: 0.5;
+    font-family: monospace;
+}
